@@ -1,4 +1,4 @@
-## 📁 Estrutura de Pastas 
+# 📁 Estrutura de Pastas 
 
 - `public` → Arquivos servidos diretamente ao HTML (imagens estáticas, favicon, etc.).
 - `assets` → Arquivos estáticos, imagens e ícones usados em componentes (podem ser separados em subpastas).
@@ -14,19 +14,19 @@
 - `api/core` → Função central para requisições + informações necessárias para requisições.
 - `services` → Funções complementares que tratam os dados das funções da pasta api. Essas serão chamadas pelas interfaces.
 
-## 🎛️  Fluxo de processos da aplicação
+# 🎛️  Fluxo de processos da aplicação
 
-# 1. Interfaces (pages)
+## 1. Interfaces (pages)
 
 - Cada interface da aplicação possui seu próprio escopo de navegação. Na criação de uma interface chamamos o hook useNavigationHandler, passando a função de controle de navegação respectiva à interface como parametro do hook. Ex:
 
 `useNavigationHandler(HomePageHandler)`
 
-# 2. Hooks
+## 2. Hooks
 
 - O hook useNavigationHandler é acionado na criação de uma interface e persiste até o final do ciclo de vida do componente. Em sua chamada, criamos um eventListener que aciona uma função de controle de navegação, que é definida pela função passada nos parâmetros do hook.
 
-# 3. KeyPressHandlers
+## 3. KeyPressHandlers
 
 - Essas funções, que são passadas como parâmetro pro hook useNavigationHandler, recebem padronizadamente 4 parâmetros:
 
@@ -35,7 +35,7 @@
 → setFocusedElement (para definir o selectable que irá ser selecionado).
 → selectablesList (lista de selecionáveis disponíveis na interface ativa).
 
-# 4. Componentes <Selectable/>
+## 4. Componentes <Selectable/>
 
 - Ao criar uma interface, definimos elementos do HTML que poderão ser acessados pelas KeyPressHandlers com o uso do componente <Selectable>.
 Ele deve possuir as seguintes props:
@@ -49,7 +49,7 @@ Ex:
 - Ao invocarmos esse componente, ele é passado para o método global "configureAsSelectable" como um objeto com estrutura { id: id, ref: elementoHTML }.
 Dessa forma, ele automaticamente será adicionado ao selectablesList no contexto global.
 
-# 5. Contextos globais
+## 5. Contextos globais
 
 - A aplicação conta com um contexto global navigationContext, possui os seguintes estados e métodos
 
@@ -62,7 +62,7 @@ Dessa forma, ele automaticamente será adicionado ao selectablesList no contexto
 
 - O resetNavigationState() do navigationContext reseta a selectableList e o focusedElement dentro do <NavigationControllerWrapper/>
 
-# 6. Fluxo e tratamento de requisições pela aplicação
+## 6. Fluxo e tratamento de requisições pela aplicação
 
 - A chamada de requisições na aplicação parte da pasta /api, que contém diversas funções de requisição HTTP simples.
 - Na subpasta api/core, temos a função mestra responsável por estruturar a requisição de acordo com as informações passadas. Junto a ela, permanece o arquivo de informações globais da sessão (caracteristicas do dispositivo, token da sessão e id de dispositivo).
